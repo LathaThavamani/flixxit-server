@@ -1,21 +1,20 @@
 import { generateJsonMessage } from "./commonHttpMessages.js"
 import { getAllItems } from "./mongo-db-utillities.js"
+import { User } from "./Model/userModel.js"
 import jwt from "jsonwebtoken"
 
-export const authorizeFromDatabase = (req, res, next) => {
-    getAllItems('users', {
+export const authorizeFromDatabase = async (req, res, next) => {
+    const user = await getAllItems(User, {
         useremail: req.headers.useremail,
         password: req.headers.password
-    }).then(u => {
-        //if user exists
-        if (u != null && u.length > 0) {
-            // go and execute the request
-            next()
-        } else {
-            //send dummy response
-            res.json(generateJsonMessage("Un Authorized"))
-        }
     })
+    if (user) {
+        // go and execute the request
+        next()
+    } else {
+        //send dummy response
+        res.json(generateJsonMessage("Un Authorized"))
+    }
 }
 
 export const authorizeFromToken = (req, res, next) => {

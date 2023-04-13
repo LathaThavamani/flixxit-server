@@ -1,28 +1,21 @@
 import { MongoClient, ObjectId } from "mongodb";
 
-export function getConnection() {
-    const connectionStirng = process.env.CONNECTION_STRING;
-    const connection = new MongoClient(connectionStirng)
-    return connection;
-}
+// export function getConnection() {
+//     const connectionStirng = process.env.CONNECTION_STRING;
+//     const connection = new MongoClient(connectionStirng)
+//     return connection;
+// }
 
 export function getAllItems(collectionName, query) {
-    return getConnection().connect().then(client => {
-        const db = client.db(process.env.DEFAULT_DATABASE)
-        return db.collection(collectionName)
-            .find(query)
-            .toArray()
-    })
+    const user = collectionName
+        .findOne(query)
+    return user;
 }
 
 
 export function createItem(collectionName, obj) {
-    return getConnection().connect().then(client => {
-        const db = client.db(process.env.DEFAULT_DATABASE)
-        return db.collection(collectionName)
-            .insertOne(obj)
-
-    })
+    return collectionName
+        .create(obj)
 }
 
 
@@ -53,16 +46,13 @@ export function createItem(collectionName, obj) {
 export function updateObjByFieldSingleItem(collectionName, id, field, newVal) {
     var query = {};
     query[field] = newVal;
-    return getConnection().connect().then(client => {
-        const db = client.db(process.env.DEFAULT_DATABASE)
-        return db.collection(collectionName)
-            .updateOne({
-                "_id": new ObjectId(id)
-            },
-                {
-                    $set: query
-                })
+    return collectionName
+        .updateOne({
+            "_id": new ObjectId(id)
+        },
+            {
+                $set: query
+            })
 
-    })
 }
 

@@ -6,12 +6,11 @@ import profileRoutes from "./routes/users/profile.js";
 import signupRoutes from './routes/signup/signup.js'
 import movieRoutes from "./routes/movies/movies.js";
 import { authorizeFromDatabase as authorizeFromDatabase, authorizeFromToken } from "./auth-utils.js";
+import { connectDB } from "./db.js";
 import dotenv from 'dotenv'
 dotenv.config();
 
-export function getUrl() {
-    return process.env.CONNECTION_STRING
-}
+await connectDB();
 
 const app = express();
 
