@@ -50,14 +50,19 @@ export function createItem(collectionName, obj) {
 // }
 
 
-// export function updateSingleItem(collectionName, id, obj) {
-//     return getConnection().connect().then(client => {
-//         const db = client.db(process.env.DEFAULT_DATABASE)
-//         return db.collection(collectionName)
-//             .updateOne({
-//                 "_id": new ObjectId(id)
-//             }, obj)
+export function updateObjByFieldSingleItem(collectionName, id, field, newVal) {
+    var query = {};
+    query[field] = newVal;
+    return getConnection().connect().then(client => {
+        const db = client.db(process.env.DEFAULT_DATABASE)
+        return db.collection(collectionName)
+            .updateOne({
+                "_id": new ObjectId(id)
+            },
+                {
+                    $set: query
+                })
 
-//     })
-// }
+    })
+}
 
