@@ -31,5 +31,29 @@ profileRoutes.put('/likes', (req, res) => {
         })
 })
 
+profileRoutes.put('/dislikes', (req, res) => {
+    const id = req.query.id;
+    const field = req.query.field;
+    const newVal = req.body;
+
+    updateObjByFieldSingleItem(User, id, field, newVal)
+        .then(x => {
+            res.json(generateJsonMessage("updated successfully"))
+        })
+})
+
+profileRoutes.put('/mylist', (req, res) => {
+    const id = req.query.id;
+    const field = req.query.field;
+    const newVal = req.body;
+
+    updateObjByFieldSingleItem(User, id, field, newVal)
+        .then(x => {
+            res.json(generateJsonMessage("updated successfully"))
+        })
+})
+
 export default profileRoutes
+
+
 

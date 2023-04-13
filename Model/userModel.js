@@ -18,9 +18,9 @@ const userSchema = new Schema(
             required: true,
         },
 
-        likes: [{ type: Schema.Types.Array }],
-        dislikes: [{ type: Schema.Types.Array }],
-        myList: [{ type: Schema.Types.Array }],
+        likes: { type: Schema.Types.Array },
+        dislikes: { type: Schema.Types.Array },
+        myList: { type: Schema.Types.Array }
     }
 );
 const User = mongoose.model('Users', userSchema)
