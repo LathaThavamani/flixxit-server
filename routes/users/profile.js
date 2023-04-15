@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { generateJsonMessage } from "../../commonHttpMessages.js"
-import { getAllItems, updateObjByFieldSingleItem } from "../../mongo-db-utillities.js";
+import { getAllItems, updateObjByFieldSingleItem, updateObjByFieldMultipleItem } from "../../mongo-db-utillities.js";
 import jwt from 'jsonwebtoken'
 import { ObjectId } from "mongodb";
 import { User } from "../../Model/userModel.js";
@@ -48,6 +48,18 @@ profileRoutes.put('/mylist', (req, res) => {
     const newVal = req.body;
 
     updateObjByFieldSingleItem(User, id, field, newVal)
+        .then(x => {
+            res.json(generateJsonMessage("updated successfully"))
+        })
+})
+
+profileRoutes.put('/planpayment', (req, res) => {
+    const id = req.query.id;
+    const obj = req.body;
+
+    const query = { "plan": obj.plan, "paymentmethod": obj.paymentmethod };
+
+    updateObjByFieldMultipleItem(User, id, query)
         .then(x => {
             res.json(generateJsonMessage("updated successfully"))
         })

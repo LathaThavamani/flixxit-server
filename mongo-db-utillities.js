@@ -56,3 +56,14 @@ export function updateObjByFieldSingleItem(collectionName, id, field, newVal) {
 
 }
 
+export function updateObjByFieldMultipleItem(collectionName, id, query) {
+    return collectionName
+        .updateOne({
+            "_id": new ObjectId(id)
+        },
+            {
+                $set: query
+            })
+
+}
+

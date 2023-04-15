@@ -15,12 +15,18 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            required: true,
+            required: true
         },
 
         likes: { type: Schema.Types.Array },
         dislikes: { type: Schema.Types.Array },
-        myList: { type: Schema.Types.Array }
+        myList: { type: Schema.Types.Array },
+        plan: {
+            type: String
+        },
+        paymentmethod: {
+            type: String
+        }
     }
 );
 const User = mongoose.model('Users', userSchema)
