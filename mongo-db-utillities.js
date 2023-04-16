@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export function getAllItems(collectionName, query) {
     const user = collectionName

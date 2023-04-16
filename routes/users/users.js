@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { getAllItems } from "../../mongo-db-utillities.js";
 import jwt from 'jsonwebtoken'
-import { ObjectId } from "mongodb";
 import { User } from "../../Model/userModel.js";
 const userRoutes = Router();
 
