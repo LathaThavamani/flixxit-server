@@ -1,9 +1,9 @@
 import { Router } from "express";
 import axios from "axios";
 
-//const TMDB_URL = process.env.TMDB_API_URL
 const moviesRouter = Router();
 
+// Get trending movies
 moviesRouter.get('/trending', async (req, res) => {
     let { data } = await axios.get(
         `${process.env.TMDB_API_URL}/movie/popular?api_key=${process.env.TMDB_API_KEY}`
@@ -12,6 +12,7 @@ moviesRouter.get('/trending', async (req, res) => {
 
 })
 
+// Get top rated movies
 moviesRouter.get('/toprated', async (req, res) => {
     let { data } = await axios.get(
         `${process.env.TMDB_API_URL}/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`
@@ -20,6 +21,7 @@ moviesRouter.get('/toprated', async (req, res) => {
 
 })
 
+// Get movie details based on id
 moviesRouter.get('/detail', async (req, res) => {
     let movieId = req.query.id;
     let { data } = await axios.get(
@@ -29,6 +31,7 @@ moviesRouter.get('/detail', async (req, res) => {
 
 })
 
+// Get video source for movie
 moviesRouter.get('/video', async (req, res) => {
     let movieId = req.query.id;
     let { data } = await axios.get(
@@ -38,6 +41,7 @@ moviesRouter.get('/video', async (req, res) => {
 
 })
 
+// Get all the movies based on search text
 moviesRouter.get('/search', async (req, res) => {
     let searchText = req.query.searchText;
     let { data } = await axios.get(

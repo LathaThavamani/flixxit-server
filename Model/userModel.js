@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
+// User Model
 const userSchema = new Schema(
     {
         useremail: {

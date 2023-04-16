@@ -1,13 +1,12 @@
 import { Router } from "express";
 import { createItem, getAllItems } from "../../mongo-db-utillities.js";
 import { validateBody } from "../../validator.js";
-//import { userValidations } from "./userValidations.js";
 import { generateJsonMessage } from "../../commonHttpMessages.js";
 import { User } from "../../Model/userModel.js";
 const signupRoutes = Router();
 
+// Create user account if not exists already
 signupRoutes.post('',
-    //validateBody(userValidations),
     async (req, res) => {
         let obj = req.body;
         const user = await getAllItems(User, { useremail: obj.useremail })

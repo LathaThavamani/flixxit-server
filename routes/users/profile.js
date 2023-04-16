@@ -6,6 +6,7 @@ import { ObjectId } from "mongodb";
 import { User } from "../../Model/userModel.js";
 const profileRoutes = Router();
 
+// Get user detail
 profileRoutes.get('', async (req, res) => {
 
     let obj = {
@@ -20,6 +21,7 @@ profileRoutes.get('', async (req, res) => {
 
 })
 
+// Update user liked movies
 profileRoutes.put('/likes', (req, res) => {
     const id = req.query.id;
     const field = req.query.field;
@@ -31,6 +33,7 @@ profileRoutes.put('/likes', (req, res) => {
         })
 })
 
+// Update user disliked movies
 profileRoutes.put('/dislikes', (req, res) => {
     const id = req.query.id;
     const field = req.query.field;
@@ -42,6 +45,7 @@ profileRoutes.put('/dislikes', (req, res) => {
         })
 })
 
+// Update user mylist movies
 profileRoutes.put('/mylist', (req, res) => {
     const id = req.query.id;
     const field = req.query.field;
@@ -53,6 +57,7 @@ profileRoutes.put('/mylist', (req, res) => {
         })
 })
 
+// Update user plan & payment method
 profileRoutes.put('/planpayment', (req, res) => {
     const id = req.query.id;
     const obj = req.body;
